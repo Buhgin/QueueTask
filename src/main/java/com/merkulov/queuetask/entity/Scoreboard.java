@@ -1,4 +1,4 @@
-package com.merkulov.queue.entity;
+package com.merkulov.queuetask.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

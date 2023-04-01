@@ -1,19 +1,17 @@
-package com.merkulov.queue.service;
+package com.merkulov.queuetask.service;
 
-import com.merkulov.queue.entity.Scoreboard;
-import com.merkulov.queue.repository.ScoreboardRepository;
+import com.merkulov.queuetask.entity.Scoreboard;
+import com.merkulov.queuetask.repository.ScoreboardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class ScoreboardService {
     private final String SYMBOLS = "abcdefghijklmnopqrstuvwxyz0123456789";
-    private final String start = "a0a0";
-    private final ScoreboardRepository scoreboardRepository;
 
+    private final ScoreboardRepository scoreboardRepository;
     public Scoreboard generateNextCode() {
 
         StringBuilder sb;
@@ -21,7 +19,7 @@ public class ScoreboardService {
         if (!Objects.isNull(scoreboard)) {
             sb = new StringBuilder(scoreboard.getCode());
             Integer codeLength = sb.length();
-            if (sb.toString().equals(maxRank(codeLength).toString())) {  // проверка на макс значение
+            if (sb.toString().equals(maxRank(codeLength).toString())) {
               
                 StringBuilder sbStart= newStartRank(codeLength);
                 Scoreboard scoreboardSave = new Scoreboard();
@@ -50,14 +48,8 @@ public class ScoreboardService {
             scoreboardRepository.save(scoreboardSave);
             return scoreboardSave;
 
-        } else {
-            scoreboard = new Scoreboard();
-            scoreboard.setCode(start);
-            scoreboardRepository.save(scoreboard);
-            return scoreboard;
-        }
+        } return null;
     }
-
     public StringBuilder newStartRank(Integer codeLength) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < codeLength + 2; i++) {
@@ -66,11 +58,9 @@ public class ScoreboardService {
             } else {
                 stringBuilder.append('0');
             }
-
         }
         return stringBuilder;
     }
-
     public StringBuilder maxRank(Integer codeLength) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < codeLength; i++) {

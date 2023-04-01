@@ -1,5 +1,7 @@
 
 spring:
+  liquibase:
+    enabled: true
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -8,6 +10,4 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        show-sql: true
-        hbm2ddl:
-          auto: create
+      hibernate.ddl-auto: none

@@ -1,23 +1,21 @@
-package com.merkulov.queue.controller;
+package com.merkulov.queuetask.controller;
 
-import com.merkulov.queue.entity.Scoreboard;
-import com.merkulov.queue.service.ScoreboardService;
+import com.merkulov.queuetask.entity.Scoreboard;
+import com.merkulov.queuetask.service.ScoreboardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/scoreboard")
 public class ScoreboardController {
     private final ScoreboardService scoreboardService;
-    // @PostMapping("scoreboard")
-
+    @PostMapping
     public ResponseEntity<Scoreboard> createScoreboardCode() {
-
         return new ResponseEntity<>(scoreboardService.generateNextCode(), HttpStatus.OK);
-
     }
-
 }

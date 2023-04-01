@@ -1,11 +1,9 @@
-package com.merkulov.queue.repository;
+package com.merkulov.queuetask.repository;
 
-import com.merkulov.queue.entity.Scoreboard;
+import com.merkulov.queuetask.entity.Scoreboard;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 public interface ScoreboardRepository extends JpaRepository<Scoreboard,Long> {
-
 
     Scoreboard findTopByOrderByIdDesc();
 
