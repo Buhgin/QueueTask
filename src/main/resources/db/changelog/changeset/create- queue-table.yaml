@@ -18,17 +18,19 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: false
+        -  createSequence:
+            sequenceName: queue_id_seq
+            incrementBy: 1
+            minValue: 1
+            maxValue: 100
+            startValue: 2
+            cycle: false
         - insert:
             tableName: queue
             columns:
               - column:
                   name: id
-                  valueNumeric: 1
+                  valueSequenceNext: queue_id_seq
               - column:
                   name: code
                   value: a0a0
-
-
-
-
-
