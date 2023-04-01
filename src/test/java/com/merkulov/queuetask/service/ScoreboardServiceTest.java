@@ -16,12 +16,12 @@ class ScoreboardServiceTest {
 
         Scoreboard scoreboard = new Scoreboard();
         scoreboard.setCode("a0a0");
-        when(repository.findTopByOrderByIdDesc()).thenReturn(null);
+        when(repository.findTopByOrderByIdDesc()).thenReturn(scoreboard);
         when(repository.save(any(Scoreboard.class))).thenReturn(new Scoreboard());
 
         Scoreboard result = service.generateNextCode();
 
-        assertEquals("a0a0", result.getCode());
+        assertEquals("a0a1", result.getCode());
         verify(repository, times(1)).findTopByOrderByIdDesc();
         verify(repository, times(1)).save(any(Scoreboard.class));
     }
